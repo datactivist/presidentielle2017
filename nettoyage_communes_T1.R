@@ -5,7 +5,7 @@ library(tidyverse) # the tidyverse...
 
 pres_2017_R1_communes <- read_excel("./Presidentielle_2017_Resultats_Communes_Tour_1.xls", skip = 3, guess_max = 36000)
 
-pres_2017_R1_communes_cleaned <- lire(pres_2017_R1_communes, keep = c("Code du département", "Code de la commune", "Inscrits", "Abstentions", "Exprimés", "Blancs", "Nuls"), col = seq(21, 91, 7), gap = 2)
+pres_2017_R1_communes_cleaned <- lire(pres_2017_R1_communes, keep = c("Code du département", "Libellé du département", "Code de la commune", "Libellé de la commune", "Inscrits", "Abstentions", "Exprimés", "Blancs", "Nuls"), col = seq(21, 91, 7), gap = 2)
 
 pres_2017_R1_communes_cleaned <- pres_2017_R1_communes_cleaned %>% 
   # put geographical codes in the right format
@@ -25,7 +25,7 @@ pres_2017_R1_communes_cleaned <- pres_2017_R1_communes_cleaned %>%
   # specify integers %>% 
   mutate_at(vars(Inscrits, Abstentions, Votants, Blancs, Nuls, Exprimés, `LE PEN`:CHEMINADE), as.integer) %>% 
   # reorder
-  select(CodeInsee, CodeDepartement, Inscrits, Abstentions, Abstentions_ins, Votants, Votants_ins, Blancs, Blancs_ins, Blancs_vot, Nuls, Nuls_ins, Nuls_vot, Exprimés, Exprimés_ins, Exprimés_vot, `LE PEN`:CHEMINADE, `LE PEN_ins`:CHEMINADE_exp) %>% 
+  select(CodeInsee, CodeDepartement, Département = `Libellé du département`, Commune = `Libellé de la commune`, Inscrits, Abstentions, Abstentions_ins, Votants, Votants_ins, Blancs, Blancs_ins, Blancs_vot, Nuls, Nuls_ins, Nuls_vot, Exprimés, Exprimés_ins, Exprimés_vot, `LE PEN`:CHEMINADE, `LE PEN_ins`:CHEMINADE_exp) %>% 
   # nicer, more modern dataframe class
   as_tibble()
 
