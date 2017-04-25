@@ -21,6 +21,8 @@ pres_2017_R1_cantons_cleaned <- pres_2017_R1_cantons_cleaned %>%
   mutate(Nuls_vot = Nuls / Votants * 100) %>% 
   mutate(Exprimés_ins = Exprimés / Inscrits * 100) %>% 
   mutate (Exprimés_vot = Exprimés / Votants * 100) %>% 
+  # specify integers %>% 
+  mutate_at(vars(Inscrits, Abstentions, Votants, Blancs, Nuls, Exprimés, `LE PEN`:CHEMINADE), as.integer) %>% 
   # reorder
   select(CodeCanton, CodeDépartement, Département = `Libellé du département`, NumeroCanton, Canton = `Libellé du canton`, Inscrits, Abstentions, Abstentions_ins, Votants, Votants_ins, Blancs, Blancs_ins, Blancs_vot, Nuls, Nuls_ins, Nuls_vot, Exprimés, Exprimés_ins, Exprimés_vot, `LE PEN`:CHEMINADE, `LE PEN_ins`:CHEMINADE_exp) %>% 
   # nicer, more modern dataframe class
