@@ -4,7 +4,7 @@ library(LireMinInterieur) # transform electoral files
 library(tmap) # draw pretty maps
 library(tidyverse) # the tidyverse...
 
-pres_2017_R1_communes <- read_excel("./Presidentielle_2017_Resultats_Communes_Tour_1.xls", skip = 3)
+pres_2017_R1_communes <- read_excel("./Presidentielle_2017_Resultats_Communes_Tour_1.xls", skip = 3, guess_max = 36000)
 
 pres_2017_R1_communes_cleaned <- lire(pres_2017_R1_communes, keep = c("Code du département", "Code de la commune", "Inscrits", "Abstentions", "Exprimés", "Blancs", "Nuls"), col = seq(21, 91, 7), gap = 2)
 
